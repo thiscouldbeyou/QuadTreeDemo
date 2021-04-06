@@ -6,7 +6,7 @@
 bool Quad::subdivide()
 {
 
-	if (this->bounds.depth >= 6) return false;
+	if (this->bounds.depth >= 9) return false;
 	if (!isLeaf())
 	{
 		this->child1->subdivide();

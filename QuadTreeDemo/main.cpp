@@ -16,7 +16,8 @@ static GLuint setupVertexArrayObject(GLuint &vbo)
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, 6 * 1024, nullptr, GL_DYNAMIC_DRAW);
+	const int MAX_NUM_OF_FACES = 384;
+	glBufferData(GL_ARRAY_BUFFER, MAX_NUM_OF_FACES * sizeof(Face), nullptr, GL_DYNAMIC_DRAW);
 
 	glVertexAttribPointer(
 		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
@@ -54,7 +55,7 @@ static void stopShader()
 
 int main(void)
 {
-	GLFWwindow* window = initialize(720, 480, "QuadTreeDemo");
+	GLFWwindow* window = initialize(720, 720, "QuadTreeDemo");
 
 	GLuint vbo{};
 	GLuint VertexArrayID = setupVertexArrayObject(vbo);

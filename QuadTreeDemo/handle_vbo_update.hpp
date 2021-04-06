@@ -103,9 +103,10 @@ static int regenerateVBO(vec2 loc, GLuint vbo)
 	const std::vector<QuadBounds> bounds = getListOfLeafQuads(mainQuad);
 	const std::vector<Face> faces = getFaceListFromQuadBoundList(bounds);
 
-
+	const int length = clamp(0, 384,faces.size());
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, faces.size() * sizeof(Face), faces.data(), GL_DYNAMIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, length * sizeof(Face), faces.data());
+	//glBufferData(GL_ARRAY_BUFFER, faces.size() * sizeof(Face), faces.data(), GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	const size_t NUM_OF_TRIANGLES_PER_FACE = 2;

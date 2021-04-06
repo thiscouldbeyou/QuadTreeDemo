@@ -19,6 +19,7 @@ float mx{}, my{};
 
 static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
+    if (!glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) return;
     int width, height;
     glfwGetWindowSize(window, &width, &height);
 
